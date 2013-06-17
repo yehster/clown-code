@@ -43,7 +43,7 @@ public class SampleViewer
 
   private static final String ClassName = SampleViewer.class.getName();
 
-  private static final String PropertiesFilePath = "pdfclown-samples-gui.properties";
+  private static final String PropertiesFilePath = "C:/Users/yehster/git/clown-code/java/pdfclown.samples.gui/"+"pdfclown-samples-gui.properties";
 
   private static final String Properties_InputPath = ClassName + ".inputPath";
 

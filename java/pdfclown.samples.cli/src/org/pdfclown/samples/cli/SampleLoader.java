@@ -23,7 +23,7 @@ public class SampleLoader
   // <fields>
   private static final String ClassName = SampleLoader.class.getName();
 
-  private static final String PropertiesFilePath = "pdfclown-samples-cli.properties";
+  private static final String PropertiesFilePath = "C:/Users/yehster/git/clown-code/java/pdfclown.samples.cli/"+"pdfclown-samples-cli.properties";
 
   private static final String Properties_InputPath = ClassName + ".inputPath";
   private static final String Properties_OutputPath = ClassName + ".outputPath";

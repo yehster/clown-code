@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <font filename="D:/downloads/GildaDisplay-Regular.ttf"/>
+    <field id="today" xpos="650" ypos="287"/>
+    <field id="name" xpos="620" ypos="310"/>
+    <field id="age" xpos="620" ypos="335"/>
+    <field id="length" xpos="620" ypos="358"/>
+    <field id="weight" xpos="715" ypos="358"/>
+    <field id="appt_date" xpos="600" ypos="413"/>
+    <field id="appt_time" xpos="715" ypos="413"/>
+</layout>
