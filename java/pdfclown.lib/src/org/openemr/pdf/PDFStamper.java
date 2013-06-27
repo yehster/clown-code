@@ -35,7 +35,10 @@ public class PDFStamper {
     protected PageStamper stamper;
     protected PrimitiveComposer foreground;
     protected Map<String,Point2D> fieldMap= new HashMap<String,Point2D>();
+    protected Map<String,Integer> fieldFontSizes= new HashMap<String,Integer>();
+    protected Map<String,String> fieldFontSuffixes= new HashMap<String,String>();
     
+    protected Font bodyFont;
     public PDFStamper(String source,String layout_file) throws Exception
     {
         try
@@ -55,6 +58,18 @@ public class PDFStamper {
                  Float xpos=Float.parseFloat(attrs.getNamedItem("xpos").getNodeValue());
                  Float ypos=Float.parseFloat(attrs.getNamedItem("ypos").getNodeValue());
                  fieldMap.put(id,new Point2D.Float(xpos,ypos));
+                 Node fontSize=attrs.getNamedItem("font-size");
+                 if(fontSize!=null)
+                 {
+                     fieldFontSizes.put(id, Integer.parseInt(fontSize.getNodeValue()));
+                 }
+                 
+                 Node suffix=attrs.getNamedItem("suffix");
+                 if(suffix!=null)
+                 {
+                     fieldFontSuffixes.put(id,suffix.getNodeValue());
+                 }
+                         
             }
             
             stamper = new PageStamper();        
@@ -62,7 +77,7 @@ public class PDFStamper {
             foreground=stamper.getForeground();
          
             String font_name=layout.getElementsByTagName("font").item(0).getAttributes().getNamedItem("filename").getNodeValue();
-            Font bodyFont = Font.get(doc,font_name);
+            bodyFont = Font.get(doc,font_name);
             foreground.setFont(bodyFont, 11);           
             foreground.beginLocalState();
             
@@ -77,7 +92,20 @@ public class PDFStamper {
     {
         try
         {
-            fieldMap.get(fieldName).toString();
+            Integer fontSize=fieldFontSizes.get(fieldName);
+            if(fontSize==null)
+            {
+                foreground.setFont(bodyFont, 11);                       
+            }
+            else
+            {
+                foreground.setFont(bodyFont, fontSize);           
+            }
+            String suffix=fieldFontSuffixes.get(fieldName);
+            if(suffix!=null)
+            {
+                text=text+suffix;
+            }
             foreground.showText(text,fieldMap.get(fieldName));
             return true;
         }
